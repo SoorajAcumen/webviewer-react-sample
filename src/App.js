@@ -4,14 +4,18 @@ import './App.css';
 
 const App = () => {
   const viewer = useRef(null);
-  const url = 'https://storage.googleapis.com/moksh-dev/word-doc.docx'
+  // const url = 'https://storage.googleapis.com/moksh-dev/word-doc.docx'
   // const url = 'https://icseindia.org/document/sample.pdf'
+
+  const queryParams = new URLSearchParams(window.location.search);
+  const url = queryParams.get('url'); // Replace 'myParam' with your actual query param name
+  console.log('Query Parameter:', url);
 
   useEffect(() => {
     WebViewer(
       {
         path: '/webviewer/lib',
-        licenseKey: 'demo:1731305902335:7efef1130300000000ecd5e4619a6c4248b80b08e908e02111ef1543ca', // Demo license key for WebViewer
+        licenseKey: '<PDFTRON_LICENSE_KEY>', // Demo license key for WebViewer
         initialDoc: `https://cors-anywhere.herokuapp.com/${url}`,
         enableOfficeEditing: true,
       },
